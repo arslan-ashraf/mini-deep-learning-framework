@@ -40,10 +40,6 @@ if __name__ == "__main__":
 		1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
 	]
 
-	X = [[3.0, 1.4, 0.5, 1.0],
-		 [1.6, 2.4, 3.5, -1.0],
-		 [1.9, 1.7, 1.3, -1.0]]
-	Y = [1, 0, 1]
 
 	feature_dim = len(X_setosa_versicolor[0])
 	output_dim = 1
@@ -55,5 +51,4 @@ if __name__ == "__main__":
 	model.add(dense_layer_1)
 	model.add(dense_layer_2)
 
-	# model.fit(X_setosa_versicolor, Y_setosa_versicolor, epochs=10, learning_rate=1)
-	model.fit(X, Y, epochs=10, learning_rate=1)
+	model.fit(X_setosa_versicolor, Y_setosa_versicolor, epochs=30, learning_rate=1)
