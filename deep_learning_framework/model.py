@@ -1,5 +1,5 @@
 import random
-from variable import *
+from deep_learning_framework.variable import Variable
 
 
 class Neuron:
