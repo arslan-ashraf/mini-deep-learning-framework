@@ -4,6 +4,9 @@ from deep_learning_framework.variable import Variable
 
 class Neuron:
 	def __init__(self, num_neurons_in, activation):
+		"""
+		self.weights is a list of the number of neurons going in to a layer
+		"""
 		self.weights = [
 			Variable(random.normalvariate(0, 1), name="w_{}".format(i+1)) for i in range(num_neurons_in)
 		]
@@ -22,11 +25,18 @@ class Neuron:
 
 class DenseLayer:
 	def __init__(self, num_neurons_in, num_neurons_out, activation):
+		"""
+		Initializes the weight matrix of shape (num_neurons_in, num_neurons_out)
+		"""
 		self.neurons = [
 			Neuron(num_neurons_in, activation) for _ in range(num_neurons_out)
 		]
 
 	def __call__(self, X):
+		""" 
+		Each neuron(X) does (length of input) calculations.
+		The number of self.neurons determines how many neurons are coming out.
+		"""
 		layer_output = [neuron(X) for neuron in self.neurons]
 		return layer_output[0] if len(layer_output) == 1 else layer_output
 
@@ -50,11 +60,11 @@ class Model:
 		self.history = {}
 		self.loss = 0
 
-	def __call__(self, x):
-		for layer in self.layers:
-			x = layer(x)
+	def __call__(self, X):
+		for i, layer in enumerate(self.layers):
+			X = layer(X)
 
-		return x
+		return X
 
 	def add(self, layer):
 		self.layers.append(layer)
